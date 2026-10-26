@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Разбор профессии · школа-театр «Игра»</title><meta name="description" content="Встреча с актёрами для подростков 12+, 30 октября в 14:30, школа-театр «Игра»"><link rel="icon" href="logo.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"><style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style></head><body><style>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Разбор профессии · школа-театр «Игра»</title><meta name="description" content="Встреча с актёрами для подростков 12+, 30 октября в 14:30, школа-театр «Игра»"><link rel="icon" href="logo.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="/_vercel/insights/script.js"></script><style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style></head><body><style>
 /* Layout: light, airy first block with a centered title and a big date; orange marquee; dark plum stage below; ticket-shaped registration with a logo stub. */
 :root{
   --stage:#1f0a18; --stage-2:#2b1022; --plum:#592846; --orange:#ed7339; --orange-soft:#f6b08a;
@@ -267,9 +267,15 @@ footer .logo{width:100px}
 const CONFIG = {
   kaspiUrl: "https://pay.kaspi.kz/pay/lchs9lno",
   whatsapp: "77471746271",
-  waText: "+7 747 174 62 71"
+  waText: "+7 747 174 62 71",
+  metaPixelId: ""            // ID пикселя Meta (Instagram/Facebook), только цифры
 };
 /* ===================== */
+if (CONFIG.metaPixelId) {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq("init", CONFIG.metaPixelId); fbq("track", "PageView");
+}
+function track(ev, params){ if (window.fbq) fbq("track", ev, params); }
 document.querySelectorAll("[data-cfg]").forEach(el => {
   const v = CONFIG[el.dataset.cfg];
   if (v) { el.textContent = v; el.classList.remove("ph"); }
@@ -292,10 +298,12 @@ function showDone(reg, focus){
   if (focus) { done.scrollIntoView({ behavior: "smooth", block: "start" }); done.focus({ preventScroll: true }); }
 }
 document.getElementById("payLink").addEventListener("click", () => {
+  track("InitiateCheckout", { value: 5000, currency: "KZT" });
   const reg = load() || {}; reg.paid = true; save(reg);
   document.getElementById("stepPay").classList.add("is-done");
   document.getElementById("stepWa").classList.add("is-next");
 });
+document.getElementById("waLink").addEventListener("click", () => track("Contact"));
 document.getElementById("resetBtn").addEventListener("click", () => {
   try { localStorage.removeItem(KEY); } catch (x) {}
   document.getElementById("done").hidden = true; document.getElementById("ticket").hidden = false;
@@ -317,6 +325,7 @@ form.addEventListener("submit", e => {
   const code = makeCode();
   const reg = { code, teen: t.value.trim(), age: a.value, parent: n.value.trim(), phone: p.value.trim(), paid: false };
   save(reg); showDone(reg, true); form.reset();
+  track("Lead");
 });
 </script>
 </body></html>
