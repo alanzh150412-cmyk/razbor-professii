@@ -1,0 +1,322 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Разбор профессии · школа-театр «Игра»</title><meta name="description" content="Встреча с актёрами для подростков 12+, 30 октября в 14:30, школа-театр «Игра»"><link rel="icon" href="logo.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"><style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style></head><body><style>
+/* Layout: light, airy first block with a centered title and a big date; orange marquee; dark plum stage below; ticket-shaped registration with a logo stub. */
+:root{
+  --stage:#1f0a18; --stage-2:#2b1022; --plum:#592846; --orange:#ed7339; --orange-soft:#f6b08a;
+  --paper:#fff7f2; --hero-bg:#f8f1f5; --hero-ink:#3d1631; --hero-muted:#7d5f71; --orange-deep:#b9501b; --ink:#24101c; --muted:#c2a8b8; --line:#47203b; --ink-muted:#6f5465; --error:#b3261e;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--stage);color:var(--paper);font-family:var(--f-body);font-size:16px;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--orange)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,4.5vw,40px);line-height:1.1;margin:6px 0 22px;text-wrap:balance}
+
+/* hero: light, semi-transparent plum wash over white */
+.hero{position:relative;overflow:hidden;color:var(--hero-ink);background:radial-gradient(60% 70% at 50% 0%,rgba(237,115,57,.16) 0%,rgba(237,115,57,0) 70%),radial-gradient(80% 90% at 50% 110%,rgba(89,40,70,.16) 0%,rgba(89,40,70,0) 70%),var(--hero-bg)}
+.hero .wrap{position:relative;padding-block:28px 56px;display:grid;gap:22px;justify-items:center;text-align:center}
+.logo{width:140px;height:auto;display:block}
+.hero .logo{width:150px}
+.hero .eyebrow{margin-top:26px;color:var(--orange-deep)}
+.hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,9vw,112px);line-height:.94;letter-spacing:-.02em;margin:0;color:var(--plum)}
+.role{font-family:var(--f-display);font-weight:700;font-size:clamp(15px,2vw,19px);padding:8px 16px;border:1.5px solid var(--orange);border-radius:999px;color:var(--orange-deep)}
+.lead{max-width:54ch;font-size:clamp(17px,2.1vw,20px);color:#f0dfe8;margin:0}
+.hero .lead{color:var(--hero-muted)}
+.date{display:grid;justify-items:center;gap:8px;margin-top:6px}
+.date b{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,8.4vw,92px);line-height:1;letter-spacing:-.01em;color:var(--orange);text-transform:uppercase}
+.date span{font-family:var(--f-display);font-weight:700;font-size:clamp(18px,2.6vw,26px);color:var(--plum)}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;margin:4px 0 0;padding:0;list-style:none}
+.facts li{display:grid;gap:2px}
+.facts b{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted);font-weight:500}
+.facts span{font-size:18px;font-weight:600}
+.cta{justify-self:start;display:inline-block;margin-top:6px;padding:15px 28px;border-radius:999px;background:var(--orange);color:var(--ink);font-weight:700;font-size:17px;text-decoration:none}
+.cta:hover{background:var(--orange-soft)}
+.hero .cta{justify-self:center}
+
+/* marquee */
+.marquee{background:var(--orange);color:var(--ink);overflow:hidden;white-space:nowrap;font-family:var(--f-display);font-weight:700;font-size:clamp(15px,2vw,20px);text-transform:uppercase;padding-block:12px}
+.marquee .track{display:inline-flex;align-items:center}
+.marquee span{padding-right:28px}
+.marquee i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ink);margin-right:28px;flex:none}
+
+/* sections */
+section{padding-block:60px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.split > div{min-width:0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps.col{grid-template-columns:1fr}
+.steps li{counter-increment:s;padding-top:16px;border-top:1px solid var(--line);color:var(--muted)}
+.steps li::before{content:counter(s);display:block;font-family:var(--f-display);font-weight:800;font-size:28px;color:var(--orange);margin-bottom:4px}
+.steps strong{display:block;color:var(--paper);font-size:17px}
+.topics{margin:0;padding:0;list-style:none}
+.topics li{padding:14px 0;border-bottom:1px solid var(--line);font-size:17px;display:flex;gap:12px;align-items:baseline}
+.topics li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange);flex:none;transform:translateY(-2px)}
+.topics li:first-child{border-top:1px solid var(--line)}
+
+/* speakers */
+.mod{display:grid;grid-template-columns:120px 1fr;gap:6px 22px;align-items:center;padding:22px;border:1px solid var(--line);border-radius:16px;margin-bottom:30px;max-width:780px;background:var(--stage-2)}
+.mod .ava{grid-row:span 3;width:120px;aspect-ratio:1;border-radius:50%;font-size:36px}
+.mod .eyebrow{align-self:end}
+.mod b{font-family:var(--f-display);font-weight:700;font-size:clamp(19px,2.4vw,24px)}
+.mod p{margin:0;color:var(--muted);align-self:start}
+.speakers{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px}
+.sp{display:grid;gap:6px;align-content:start}
+.ava{aspect-ratio:4/5;max-width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--line);display:grid;place-items:center;background:linear-gradient(160deg,var(--plum) 0%,var(--stage-2) 85%);color:var(--orange-soft);font-family:var(--f-display);font-weight:800;font-size:46px;letter-spacing:.02em}
+.ava{position:relative}
+.ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+/* theatre-site portraits carry a caption strip at the bottom: show only the top part */
+.ava img.crop{inset:0 0 auto 0;height:130%;object-position:50% 0}
+.sp b{font-size:17px;margin-top:4px}.sp span{color:var(--muted);font-size:14px;line-height:1.45}
+
+/* ticket */
+.reg-steps{margin-bottom:30px}
+.ticket{display:grid;grid-template-columns:1fr 220px;background:var(--paper);color:var(--ink);border-radius:16px;position:relative;max-width:860px}
+.ticket::before,.ticket::after{content:"";position:absolute;right:207px;width:26px;height:26px;border-radius:50%;background:var(--stage)}
+.ticket::before{top:-13px}.ticket::after{bottom:-13px}
+.ticket-main{padding:30px;display:grid;gap:16px;min-width:0}
+.stub{border-left:2px dashed #d9c3cf;padding:28px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.stub .logo{width:100%;max-width:160px}
+.stub small{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
+.stub .price{font-family:var(--f-display);font-size:26px;font-weight:700;color:var(--plum)}
+.legend{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--plum);margin:4px 0 -4px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--ink-muted)}
+input,select{font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid #e2cfd9;border-radius:10px;background:#ffffff;color:var(--ink);width:100%;color-scheme:light}
+input:focus,select:focus{border-color:var(--plum);outline:none;box-shadow:0 0 0 3px rgba(89,40,70,.18)}
+[aria-invalid="true"]{border-color:var(--error)}
+.err{color:var(--error);font-size:13px;min-height:1em;margin:0}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:500;font-size:13px}
+.consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--plum)}
+button{font:inherit;font-weight:700;font-size:17px;padding:15px 22px;border:0;border-radius:999px;background:var(--plum);color:#fff;cursor:pointer}
+button:hover{background:#45193a}
+
+/* after submit: same stage look as the hero */
+.confirm{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:20px;padding:clamp(22px,4vw,44px);display:grid;gap:22px;max-width:960px;background:radial-gradient(80% 90% at 85% 0%,#7a3560 0%,var(--plum) 30%,var(--stage) 75%)}
+.confirm h3{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,7vw,80px);line-height:.92;letter-spacing:-.02em;margin:0}
+.confirm h3 span{color:var(--orange)}
+.confirm .lead{font-size:clamp(16px,2vw,19px)}
+.code-box{justify-self:start;display:grid;gap:4px;padding:12px 18px;border:1.5px dashed var(--orange);border-radius:12px}
+.code-box b{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.code-box span{font-family:var(--f-mono);font-size:clamp(22px,3vw,30px);font-weight:600;letter-spacing:.08em;color:var(--paper)}
+.confirm-steps{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.confirm-steps li{display:grid;gap:8px;align-content:start}
+.confirm-steps li::before{margin-bottom:0}
+.confirm-steps .cta{margin-top:6px}
+.cta.ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1.5px var(--orange)}
+.cta.ghost:hover{background:rgba(237,115,57,.14)}
+.confirm-steps li.is-done::before{content:"✓"}
+.confirm-steps li.is-done .cta{background:transparent;color:var(--orange-soft);box-shadow:inset 0 0 0 1.5px var(--line)}
+.confirm-steps li.is-next .cta.ghost{background:var(--orange);color:var(--ink);box-shadow:none}
+.confirm .note{font-size:14px;color:var(--muted);margin:0}
+.linklike{background:none;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--orange);text-decoration:underline;cursor:pointer}
+.linklike:hover{background:none;color:var(--orange-soft)}
+
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{padding-block:30px;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+footer .logo{width:100px}
+
+@media (max-width:720px){
+  .split{grid-template-columns:1fr;gap:40px}
+  .ticket{grid-template-columns:1fr}
+  .ticket::before,.ticket::after{display:none}
+  .stub{border-left:0;border-top:2px dashed #d9c3cf;flex-direction:row;align-items:center;padding:18px 22px}
+  .stub .logo{width:110px}
+  .row{grid-template-columns:1fr}
+  .ticket-main{padding:22px}
+  .speakers{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .ava{font-size:34px}
+  .mod{grid-template-columns:76px 1fr;padding:16px;gap:4px 14px}
+  .mod .ava{width:76px;font-size:24px;grid-row:span 2}
+  .mod p{grid-column:1 / -1}
+  .logo{width:116px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{transform:translateY(18px);opacity:.25}to{transform:none;opacity:1}}
+  .marquee .track{animation:run 28s linear infinite}
+  @keyframes run{to{transform:translateX(-50%)}}
+}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="logo.svg" alt="Игра, школа-театр">
+    <div class="eyebrow">Встреча для подростков 12+</div>
+    <h1>РАЗБОР<br>ПРОФЕССИИ</h1>
+    <div class="role">Профессия: актёр</div>
+    <p class="lead">Живая встреча с актёрами театра, кино и дубляжа. Спикеры расскажут, как пришли в профессию, ответят на вопросы модератора и подростков. Обсудим и спорные вопросы.</p>
+    <div class="date"><b>30 октября</b><span>пятница · 14:30</span></div>
+    <ul class="facts">
+      <li><b>Место</b><span>пр. Назарбаева, 223, 2 этаж</span></li>
+      <li><b>Стоимость</b><span>5 000 ₸</span></li>
+      <li><b>Количество мест</b><span>ограничено</span></li>
+    </ul>
+    <a class="cta" href="#register">Записаться на встречу</a>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Разбор профессии</span><i></i><span>30 октября, 14:30</span><i></i><span>12+</span><i></i><span>Количество мест ограничено</span><i></i><span>5 000 ₸</span><i></i>
+  <span>Разбор профессии</span><i></i><span>30 октября, 14:30</span><i></i><span>12+</span><i></i><span>Количество мест ограничено</span><i></i><span>5 000 ₸</span><i></i>
+  <span>Разбор профессии</span><i></i><span>30 октября, 14:30</span><i></i><span>12+</span><i></i><span>Количество мест ограничено</span><i></i><span>5 000 ₸</span><i></i>
+  <span>Разбор профессии</span><i></i><span>30 октября, 14:30</span><i></i><span>12+</span><i></i><span>Количество мест ограничено</span><i></i><span>5 000 ₸</span><i></i>
+</div></div>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Ход встречи</div>
+      <h2>Как пройдёт встреча</h2>
+      <ol class="steps col">
+        <li><strong>Истории спикеров</strong>Каждый коротко расскажет о своём пути в профессии.</li>
+        <li><strong>Вопросы модератора</strong>Разбираем профессию актёра по главным темам.</li>
+        <li><strong>Вопросы подростков</strong>Живой диалог: спрашивайте о том, что волнует именно вас.</li>
+      </ol>
+    </div>
+    <div>
+      <div class="eyebrow">Темы</div>
+      <h2>О чём поговорим</h2>
+      <ul class="topics">
+        <li>Как готовиться к поступлению</li>
+        <li>Сложности в учёбе и трудоустройство после выпуска</li>
+        <li>Как зарабатывать с актёрским образованием</li>
+        <li>Варианты развития карьеры</li>
+        <li>Смежные профессии после актёрского</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Спикеры</div>
+    <h2>Кто выйдет на сцену</h2>
+    <div class="mod">
+      <div class="ava">РХ<img src="rauf.jpg" alt="Рауф Хабибуллин" loading="lazy"></div>
+      <div class="eyebrow">Модератор</div>
+      <b>Рауф Хабибуллин</b>
+      <p>Ведущий актёр НРТД им. Лермонтова и один из самых узнаваемых голосов официального голливудского дубляжа в СНГ.</p>
+    </div>
+    <div class="speakers">
+      <div class="sp"><div class="ava">РЖ<img src="roman.jpg" alt="Роман Жуков" loading="lazy" style="object-position:50% 0"></div><b>Роман Жуков</b><span>Актёр НРТД им. Лермонтова, актёр кино и дубляжа, режиссёр, сценарист и драматург.</span></div>
+      <div class="sp"><div class="ava">КК<img src="karina.jpg" alt="Карина Кудекова" loading="lazy" style="object-position:50% 30%"></div><b>Карина Кудекова</b><span>Актриса театра, кино и дубляжа. Голос главных героинь голливудских блокбастеров в русском прокате.</span></div>
+      <div class="sp"><div class="ava">НЦ<img src="nadin.jpg" alt="Надин Цой" loading="lazy" style="object-position:50% 20%"></div><b>Надин Цой</b><span>Кастинг-директор, основательница актёрского агентства eTalents в Алматы. Более 12 лет в кино, премия за лучший кастинг национального фильма.</span></div>
+      <div class="sp"><div class="ava"><img src="azamat.jpg" alt="Азамат Абдильдинов" loading="lazy"></div><b>Азамат Абдильдинов</b><span>Режиссёр, актёр театра и кино, известен по ролям в казахстанских фильмах и сериалах. Ставит спектакли в театре «Игра».</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="register">
+  <div class="wrap">
+    <div class="eyebrow">Регистрация · количество мест ограничено</div>
+    <h2>Билет на встречу</h2>
+    <ol class="steps reg-steps">
+      <li><strong>Заполните форму</strong>Данные подростка и одного из родителей попадут в сообщение для WhatsApp.</li>
+      <li><strong>Оплатите в Kaspi</strong>5 000 ₸ по ссылке, которая появится после отправки формы.</li>
+      <li><strong>Отправьте чек в WhatsApp</strong>Бронь подтверждается после оплаты.</li>
+    </ol>
+    <div class="ticket" id="ticket">
+      <div class="ticket-main">
+        <form id="regForm" novalidate>
+          <div style="display:grid;gap:14px">
+            <p class="legend">Подросток</p>
+            <div class="row">
+              <label for="teenName">Имя и фамилия<input id="teenName" name="teenName" autocomplete="off" required></label>
+              <label for="age">Возраст<select id="age" name="age" required>
+                <option value="">Выберите</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option value="18+">18 и старше</option>
+              </select></label>
+            </div>
+            <p class="legend">Родитель</p>
+            <div class="row">
+              <label for="parentName">Имя родителя<input id="parentName" name="parentName" autocomplete="name" required></label>
+              <label for="phone">Телефон родителя<input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 7__ ___ __ __" required></label>
+            </div>
+            <label class="consent" for="agree"><input id="agree" type="checkbox" required>Я родитель или законный представитель и согласен(на) на обработку персональных данных для регистрации на встречу</label>
+            <p class="err" id="err" role="alert"></p>
+            <button type="submit" id="submitBtn">Продолжить к оплате</button>
+          </div>
+        </form>
+      </div>
+      <aside class="stub">
+        <img class="logo" src="logo.svg" alt="">
+        <div><small>30.10 · 14:30 · 12+</small><div class="price">5 000 ₸</div></div>
+      </aside>
+    </div>
+    <div class="confirm" id="done" hidden tabindex="-1">
+      <div class="eyebrow">Регистрация · осталось 2 шага</div>
+      <h3>ЗАЯВКА<br>ПРИНЯТА<span>.</span></h3>
+      <p class="lead">Участник: <b id="teenOut">подросток</b>. Оплатите и отправьте чек в WhatsApp: организаторы увидят заявку и подтвердят бронь.</p>
+      <div class="code-box"><b>Номер заявки</b><span id="code">РП-0000</span></div>
+      <ol class="steps confirm-steps">
+        <li id="stepPay"><strong>Оплатите 5 000 ₸ в Kaspi</strong><span id="payHint">Откроется приложение Kaspi. Если сумма не подставилась, введите 5 000 ₸.</span><a class="cta" id="payLink" href="#" target="_blank" rel="noopener">Оплатить 5 000 ₸</a></li>
+        <li id="stepWa"><strong>Отправьте чек в WhatsApp</strong>Сообщение с данными заявки уже готово, останется прикрепить скриншот чека.<a class="cta ghost" id="waLink" href="#" target="_blank" rel="noopener">Отправить чек</a></li>
+      </ol>
+      <p class="note">WhatsApp организатора: <span data-cfg="waText"></span>. Если закрыли страницу, просто откройте сайт снова: эти кнопки сохранятся. <button type="button" class="linklike" id="resetBtn">Записать ещё одного подростка</button></p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><img class="logo" src="logo-white.svg" alt="Игра, школа-театр"><span>Актёрская школа и театр детей «Игра» · пр. Назарбаева, 223, 2 этаж</span><span>WhatsApp <span data-cfg="waText"></span></span></div></footer>
+
+<script>
+/* ===== НАСТРОЙКИ ===== */
+const CONFIG = {
+  kaspiUrl: "https://pay.kaspi.kz/pay/lchs9lno",
+  whatsapp: "77471746271",
+  waText: "+7 747 174 62 71"
+};
+/* ===================== */
+document.querySelectorAll("[data-cfg]").forEach(el => {
+  const v = CONFIG[el.dataset.cfg];
+  if (v) { el.textContent = v; el.classList.remove("ph"); }
+});
+const form = document.getElementById("regForm"), err = document.getElementById("err");
+const KEY = "rp-registration";
+const isPhone = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+if (!isPhone) document.getElementById("payHint").textContent = "На компьютере Kaspi покажет QR-код. Отсканируйте его камерой телефона или в приложении Kaspi, и оплата откроется на телефоне. Сумма: 5 000 ₸.";
+function save(reg){ try { localStorage.setItem(KEY, JSON.stringify(reg)); } catch (x) {} }
+function load(){ try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch (x) { return null; } }
+function showDone(reg, focus){
+  const done = document.getElementById("done");
+  document.getElementById("code").textContent = reg.code;
+  document.getElementById("teenOut").textContent = reg.teen;
+  document.getElementById("payLink").href = CONFIG.kaspiUrl;
+  document.getElementById("waLink").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Здравствуйте! Оплатил(а) встречу «Разбор профессии» 30.10 в 14:30.\nЗаявка: " + reg.code + "\nПодросток: " + reg.teen + (reg.age ? ", " + reg.age + " лет" : "") + "\nРодитель: " + (reg.parent || "") + "\nТелефон: " + (reg.phone || "") + "\nЧек прикрепляю.");
+  document.getElementById("stepPay").classList.toggle("is-done", reg.paid);
+  document.getElementById("stepWa").classList.toggle("is-next", reg.paid);
+  document.getElementById("ticket").hidden = true; done.hidden = false;
+  if (focus) { done.scrollIntoView({ behavior: "smooth", block: "start" }); done.focus({ preventScroll: true }); }
+}
+document.getElementById("payLink").addEventListener("click", () => {
+  const reg = load() || {}; reg.paid = true; save(reg);
+  document.getElementById("stepPay").classList.add("is-done");
+  document.getElementById("stepWa").classList.add("is-next");
+});
+document.getElementById("resetBtn").addEventListener("click", () => {
+  try { localStorage.removeItem(KEY); } catch (x) {}
+  document.getElementById("done").hidden = true; document.getElementById("ticket").hidden = false;
+  document.getElementById("teenName").focus();
+});
+const saved = load(); if (saved && saved.code) showDone(saved, false);
+function makeCode(){ return "РП-" + Date.now().toString(36).slice(-4).toUpperCase() + Math.floor(Math.random()*90+10); }
+form.addEventListener("submit", e => {
+  e.preventDefault(); err.textContent = "";
+  const t = form.teenName, a = form.age, n = form.parentName, p = form.phone;
+  [t,a,n,p].forEach(i => i.removeAttribute("aria-invalid"));
+  const bad = [];
+  if (t.value.trim().length < 3) bad.push(t);
+  if (!a.value) bad.push(a);
+  if (n.value.trim().length < 2) bad.push(n);
+  if (p.value.replace(/\D/g,"").length < 10) bad.push(p);
+  if (bad.length){ bad.forEach(i => i.setAttribute("aria-invalid","true")); err.textContent = "Заполните все поля: имя подростка, возраст, имя и телефон родителя."; bad[0].focus(); return; }
+  if (!document.getElementById("agree").checked){ err.textContent = "Отметьте согласие на обработку данных."; return; }
+  const code = makeCode();
+  const reg = { code, teen: t.value.trim(), age: a.value, parent: n.value.trim(), phone: p.value.trim(), paid: false };
+  save(reg); showDone(reg, true); form.reset();
+});
+</script>
+</body></html>
